@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 //for every subject i enter all the skills, then i sort each subject skills in reverse order
 //then i make accumulative sum
-//and while doing that i calculate in arr[i] the best and if we take i students , and then maximize at the end
+//and while doing that i calculate in arr[i] the best ans if we take i students , and then maximize at the end
 
 #include <bitset>
 #define ll long long
