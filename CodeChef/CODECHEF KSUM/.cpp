@@ -1,4 +1,4 @@
-//i use a priority queue to insert the sum of a segment , along with the start and end position of this segment
+//i use a priority queue to insert the sum of a segment(calculated using accumulative sum) , along with the start and end position of this segment
 //at first i insert all the array(the segment starting at 1 and ending at n)
 //then in each step i print , and add in the priority queue the segment of length-1 once by increasing the start {s+1,e}
 //and once by decreasing the end {s,e-1}
