@@ -1,5 +1,5 @@
 //we need to know the gcd for each segment given in the queries, so we build a segment tree
-/where each node is the gcd of this segment , 
+//where each node is the gcd of this segment , 
 //and for each query, we get the gcd , and then see how many times this gcd appears in the range using binary search over
 //a map that stores all the positions of a number
 //then in order to know how many ants will be eaten , we simply have to subtract the number of occurences of this gcd
