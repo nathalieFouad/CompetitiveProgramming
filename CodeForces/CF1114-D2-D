@@ -1,0 +1,48 @@
+/*
+        i brute force the starting position, and for each position i calculate the min number of moves and i minimize.
+        to calculate the min number of moves i use dp. i is the postion that we're holding from the left, and j is the position
+        from the right, and everything between i and j has already been flooded.
+        every time we try to either take the cell at pos i or j with us, by making all the of flooded part the same color
+        as cell i or j. we also keep track of whether the cell i and cell j have the same color as the flooded part or not
+        in eq1 and eq2 so that we know whether we'll add 1 or not.
+
+*/
+
+#include <bits/stdc++.h>
+#include <bitset>
+#define ll long long
+#define ld long double
+#define ull unsigned long long
+#define endl '\n'
+#define mod 1000000007
+
+using namespace std;
+
+short arr[5005], n;
+short mem[5004][5004][2][2];
+
+short solve(short i , short j, bool eq1, bool eq2)
+{
+    if(i<1&&j>n)return 0;
+    if(mem[i][j][eq1][eq2]!=-1)return mem[i][j][eq1][eq2];
+    short ret=30000;
+    if(i<1)return mem[i][j][eq1][eq2]=solve(i,j+1,eq1,(arr[j+1]==arr[j]))+(short)(eq2==0);
+    if(j>n)return mem[i][j][eq1][eq2]=solve(i-1,j,(arr[i-1]==arr[i]),eq2)+(short)(eq1==0);
+    ret= solve(i-1,j,(arr[i-1]==arr[i]),(arr[j]==arr[i]))+(short)(eq1==0);
+    short u=solve(i,j+1,(arr[i]==arr[j]),(arr[j+1]==arr[j]))+(short)(eq2==0);
+    ret=min(ret, u);
+    return mem[i][j][eq1][eq2]=ret;
+}
+
+int main()
+{
+    memset(mem,-1,sizeof mem);
+    short ans=30000;
+    cin>>n;
+    for(short i=1;i<=n;i++)
+        cin>>arr[i];
+    for(short i=1;i<=n;i++)
+        ans=min(ans,solve(i-1,i+1,(arr[i-1]==arr[i]),(arr[i+1]==arr[i]) ));
+    cout<<ans;
+    return 0;
+}
